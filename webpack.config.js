@@ -1,5 +1,5 @@
 module.exports = {
-    entry: "./src/app.js",
+    entry: "./app/src/app.js",
     output: {
         filename: "public/js/bundle.js",
         sourceMapFilename: "public/js/bundle.map"
@@ -10,11 +10,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/,
-                query:
-                {
-                    presets:['es2015']
-                }
+                exclude: /node_modules/
             }
         ]
     }
