@@ -1,3 +1,12 @@
+body {
+  background-color: #000;
+  color: #ff8025;
+}
+
+.search-container {
+  margin-top: 30px;
+}
+
 .movie-tile {
   width: 25%;
   padding: 10px 0px;
@@ -5,11 +14,18 @@
   text-align: center;
 }
 
-.movie-tile img {
+.movie-tile > img {
   width: 90%;
 }
 
-.movie-tile p {
+.movie-tile > .movie-title {
+  color: #ff8025;
+  font-size: 16px;
   font-weight: bold;
-  color: #000;
+  margin-bottom: 0;
+}
+
+.movie-tile > .movie-release-date {
+  font-size: 10px;
+  color: #eee;
 }
