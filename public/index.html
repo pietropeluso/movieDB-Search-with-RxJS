@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>RxJS search application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <div class="container">
@@ -17,11 +19,13 @@
             <input type="text" id="searchInputBox" class="form-control" placeholder="Enter your query here...">
           </div>
         </form>
+        <div class="row">
+          <ul id="results"></ul>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <ul id="results"></ul>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/bundle.js"></script>
   </body>
 </html>
