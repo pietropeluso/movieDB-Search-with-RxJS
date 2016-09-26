@@ -15,9 +15,13 @@
             <input type="text" id="searchInputBox" class="form-control" placeholder="Enter your query here...">
           </div>
         </form>
-        <div class="row">
-          <div id="results"></div>
+        <div class="sorting-criteria">
+          <label for="">Sort by:</label>
+          <a href="#" data-value="vote_average">Rating</a> |
+          <a href="#" data-value="popularity">Popularity</a> |
+          <a href="#" data-value="release_date">Release date</a>
         </div>
+        <div id="results"></div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

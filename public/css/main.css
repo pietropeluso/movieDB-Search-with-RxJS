@@ -7,6 +7,22 @@ body {
   margin-top: 30px;
 }
 
+.sorting-criteria {
+  float: right;
+}
+
+.sorting-criteria > a {
+  color: #fff;
+}
+
+.sorting-criteria > a:hover {
+  text-decoration: none;
+}
+
+#results {
+  clear: both;
+}
+
 .movie-tile {
   width: 25%;
   padding: 10px 0px;

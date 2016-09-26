@@ -1,10 +1,15 @@
 import { Observable } from 'rx';
 import searchMovie from './search/';
 import { clearResult, populateResult } from './utilities/dom-manipulation';
+import sortBy from 'lodash/sortBy';
 
 const main = (() => {
     const input = document.getElementById('searchInputBox');
     const resultsContainer = document.getElementById('results');
+    const sorting = document.querySelector('.sorting-criteria');
+    let searchResults = [];
+    let sortedResults = [];
+    let previousSortingCriteria = '';
 
     const keyup = Observable.fromEvent(input, 'keyup')
       .debounce(500) // debouncing the input for 500ms to avoid spurious query while typing
@@ -23,17 +28,48 @@ const main = (() => {
       .map(searchMovie) // submitting the query to the movie search service
       .switch(); // switch to the most recent of the two observable (the response from the search service)
 
-    const subscription = searchObs.subscribe(
+    const searchResultSubscription = searchObs.subscribe(
       data => {
+        searchResults = data.results;
         if (data.total_results) {
           // clear the current result list
           clearResult(resultsContainer);
           // populate with new data
-          populateResult(resultsContainer, data.results);
+          populateResult(resultsContainer, searchResults);
         }
       },
       err => {
         console.error(`Error: ${error}`);
+      }
+    );
+
+    const sortingObs = Observable.fromEvent(sorting, 'click')
+      .map(e => e.target.getAttribute('data-value'))
+      .filter(e => e !== null)
+
+    const sortingSubscription = sortingObs.subscribe(
+      sortingCriteria => {
+
+        // if the user has clicked again on the same search
+        // criteria, the UI reverse the previously sorted
+        // list of results, otherwise it will sort the list
+        // against the new sorting criteria
+        if (sortingCriteria === previousSortingCriteria) {
+          sortedResults = sortedResults.reverse();
+        } else {
+          sortedResults = sortBy(searchResults, sortingCriteria);
+        }
+
+        // saving the current sorting criteria for future comparison (see above)
+        previousSortingCriteria = sortingCriteria;
+
+        // clear the current result list
+        clearResult(resultsContainer);
+        // populate with new data
+        populateResult(resultsContainer, sortedResults);
+      },
+      err => {
+        console.error(err)
       }
     );
 
