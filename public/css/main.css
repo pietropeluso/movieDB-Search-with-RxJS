@@ -12,6 +12,18 @@ body {
   padding: 10px 0px;
   display: inline-block;
   text-align: center;
+  -webkit-transition:  -webkit-transform .2s ease-out;
+  -moz-transition: -moz-transform .2s ease-out;
+  -o-transition: -o-transform .2s ease-out;
+  -ms-transition: -ms-transform .2s ease-out;
+  transition: transform .2s ease-out;
+}
+
+.movie-tile:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .movie-tile > img {
