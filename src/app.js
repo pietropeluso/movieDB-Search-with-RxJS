@@ -1,6 +1,6 @@
 import { Observable } from 'rx';
 import searchMovie from './search/';
-import { clearList, populateList } from './utilities/dom-manipulation';
+import { clearResult, populateResult } from './utilities/dom-manipulation';
 
 const main = (() => {
     const input = document.getElementById('searchInputBox');
@@ -14,7 +14,7 @@ const main = (() => {
         // if the query is an empty string the result list
         // container is cleared so the UI content is consistent
         // with the search input status
-        if (!q.length) { clearList(resultsContainer); }
+        if (!q.length) { clearResult(resultsContainer); }
         return q; // returning the query string to filter it in the next step
       })
       .filter(q => q.length > 0); // filtering queries only with if the text has at least one character
@@ -27,9 +27,9 @@ const main = (() => {
       data => {
         if (data.total_results) {
           // clear the current result list
-          clearList(resultsContainer);
+          clearResult(resultsContainer);
           // populate with new data
-          populateList(resultsContainer, data.results);
+          populateResult(resultsContainer, data.results);
         }
       },
       err => {

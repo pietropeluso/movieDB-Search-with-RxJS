@@ -1,0 +1,15 @@
+.movie-tile {
+  width: 25%;
+  padding: 10px 0px;
+  display: inline-block;
+  text-align: center;
+}
+
+.movie-tile img {
+  width: 90%;
+}
+
+.movie-tile p {
+  font-weight: bold;
+  color: #000;
+}

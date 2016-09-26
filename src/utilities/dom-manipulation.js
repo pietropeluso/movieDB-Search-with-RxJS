@@ -1,20 +1,31 @@
-const populateList = (ulContainer, data) => {
+const populateResult = (container, data) => {
   data.forEach(item => {
     const tile = createSingleTile(item);
-    ulContainer.appendChild(tile);
+    container.appendChild(tile);
   });
 };
 
 const createSingleTile = (data) => {
-  const li = document.createElement('li');
-  li.innerHTML = data.title;
-  return li;
+  const el = document.createElement('div');
+  el.className = 'movie-tile';
+
+  // create a poster image inside the tile
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${data.poster_path}`;
+  el.appendChild(img);
+
+  // adding a label to display the movie title
+  const label = document.createElement('p');
+  label.innerHTML = data.title;
+  el.appendChild(label)
+
+  return el;
 }
 
-const clearList = (ulContainer) => {
-  while (ulContainer.firstChild) {
-    ulContainer.removeChild(ulContainer.firstChild);
+const clearResult = (container) => {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
   }
 };
 
-export { populateList, clearList };
+export { populateResult, clearResult };
