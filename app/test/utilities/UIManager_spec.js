@@ -1,10 +1,15 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import jsdom from 'mocha-jsdom';
-import { populateResult, clearResult } from '../../src/utilities/dom-manipulation'
+import UIManager from '../../src/utilities/UIManager'
 
 describe('dom-manipulation spec', function() {
+  let uiManager;
   jsdom();
+
+  before(function() {
+    uiManager = new UIManager();
+  })
 
   describe('...clearResult function', function() {
     const html = `
@@ -28,7 +33,7 @@ describe('dom-manipulation spec', function() {
       const elements = list.getElementsByTagName('li');
       expect(elements.length).to.equal(4);
 
-      clearResult(list);
+      uiManager.clearResult(list);
       expect(list.firstChild).to.equal(null);
     })
   });
@@ -68,7 +73,7 @@ describe('dom-manipulation spec', function() {
     it('should populate the content of the provided DOM element with the data provided', function() {
       const container = document.getElementById(containerID);
 
-      populateResult(container, dummyData);
+      uiManager.populateResult(container, dummyData);
 
       expect(container.innerHTML).to.equal(expectedContent);
     });
